@@ -1,0 +1,36 @@
+from queue import Queue # implementasi queue pakai python
+
+adjList ={
+    'A' : ['B','G'],
+    'B' : ['A','C','G'],
+    'C' : ['B','D','F','G'],
+    'D' : ['C','E'],
+    'E' : ['C','D','F'],
+    'F' : ['C','E'],
+    'G' : ['A','B','C']
+}
+visited={}
+level={}
+parent={}
+bfs_output=[]
+queue = Queue()
+
+for node in adjList.keys():
+    visited[node] = False
+    parent[node] = None
+    level[node]= -1
+
+s= 'A'
+visited[s]= True
+level[s]= 0
+queue.put(s)
+
+while not queue.empty():
+    u=queue.get()
+    bfs_output.append(u)
+    for v in adjList[u]:
+        if not visited[v]: 
+            visited[v] = True
+            queue.put(v)
+        
+print("BFS output adalah ",bfs_output)
